@@ -1,0 +1,1 @@
+When I next find time, I intend to load a large number of sql scripts from personal projects here, so that I may use them as reference at a later date.
