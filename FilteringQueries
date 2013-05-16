@@ -1,0 +1,56 @@
+/* Specifically, ON, WHERE, HAVING */
+
+/* You can use expressions in a WHERE statement */
+USE TestDb;
+
+SELECT id, firstname, lastname
+FROM HR.Employees
+WHERE country = N'USA';
+
+
+/* NOT <> does not include nulls, as nulls are unknown. */
+SELECT id, firstname, lastname
+FROM HR.Employees
+WHERE country <> N'WA';
+
+/* To handle NULLS */
+SELECT id, firstname, lastname
+FROM HR.Employees
+WHERE country <> N'WA'
+	OR country IS NULL;
+
+/* NULL == NULL is always false */
+/* always write your filter in terms of a search predicate, ie colName == something, not F(columnName) == true
+  This will allow SQL to optimize the query more efficiently */
+
+  /* Always use () for AND and ORs as the Order of Operations favors AND */
+
+  /* SQL does not short circuit evaluate, it does internally, but left or right first is not guaranteed to you. */
+
+  /* The LIKE Operand */
+SELECT id, firstname, lastname
+FROM HR.Employees
+WHERE lastname LIKE N'D%' /* any string that starts with D */
+	AND firstname LIKE N'_d' /* the second letter is d */
+	AND middlename LIKE N'[ABCD]%' /* First character is either A, B, C, or D */
+	OR unclesname LIKE N'[^0-9']%; /* First character is not a number */
+
+/* ! escapes, so !% will actually look for a % sign */
+/* By default for dates use yearmonthday suchas 20120212 */
+
+SELECT id, firstname, lastname, city
+FROM HR.Employees
+WHERE country = N'USA' AND region = N"WA"
+ORDER BY city ASC; /* or DESC */
+
+SELECT id, firstname, lastname, city
+FROM HR.Employees
+WHERE country = N'USA' AND region = N"WA"
+ORDER BY city, id;
+
+/* REMEMBER DISTINCT and GROUP BY return single rows per value, 
+   so unless you're ordering by one of the distinct or group column values
+   it will be an invalid statement */
+
+   /* because order by is a cursoe, it is expensive */
+
