@@ -9,6 +9,10 @@ FROM HumanResources.Employee;
 SELECT BusinessEntityID AS ID1, BusinessEntityID AS ID2
 from HumanResources.Employee;
 
+/* Square Bracket notation is used to allow special characters like spaces */
+SELECT BusinessEntityID as [Business Entity ID]
+from HumnanResources.Employee;
+
 /* Returns the number of employees */
 SELECT COUNT(*) AS numEmployees
 FROM HumanResources.Employee;
